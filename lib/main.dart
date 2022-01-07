@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() => runApp(QuizApp());
 
-class QuizApp extends StatelessWidget {
-  var questionIndex = 0;
-  void aswerQuestion() {
-    questionIndex += 1;
+class QuizApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _QuizAppState();
+  }
+}
+
+class _QuizAppState extends State<QuizApp> {
+  var _questionIndex = 0;
+  void _aswerQuestion() {
+    setState(() {
+      _questionIndex += 1;
+    });
+    // if (_questionIndex > 2) {
+    //   return;
+    // }
     print("Answer chosen");
   }
 
@@ -19,27 +32,27 @@ class QuizApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My First App'),
+          title: Text('My First App (video 40)'),
         ),
         body: Column(
           children: [
-            Text(
+            Question(
               // questions.elementAt(0),
-              questions[questionIndex],
+              questions[_questionIndex],
             ),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: () {
-                aswerQuestion();
+                _aswerQuestion();
               },
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: () => aswerQuestion(),
+              onPressed: () => _aswerQuestion(),
             ),
             RaisedButton(
               child: Text('Answer 3'),
-              onPressed: aswerQuestion,
+              onPressed: _aswerQuestion,
             ),
           ],
         ),
