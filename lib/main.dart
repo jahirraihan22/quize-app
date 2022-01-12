@@ -46,9 +46,17 @@ class _QuizAppState extends State<QuizApp> {
   var _questionIndex = 0;
   var _totalScore = 0;
 
-  void _answerQuestion(int score) {
-    _totalScore += score;
+  void _reset() {
     setState(() {
+      _totalScore = 0;
+      _questionIndex = 0;
+    });
+  }
+
+  void _answerQuestion(int score) {
+    print(score);
+    setState(() {
+      _totalScore += score;
       _questionIndex += 1;
     });
   }
@@ -66,9 +74,7 @@ class _QuizAppState extends State<QuizApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(
-                _totalScore,
-              ),
+            : Result(_totalScore, _reset),
       ),
     );
   }
