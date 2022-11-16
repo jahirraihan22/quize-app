@@ -24,7 +24,7 @@ class Result extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        FlatButton(
+        TextButton(
           child: Text('Restart'),
           onPressed: resetHandler,
         ),
